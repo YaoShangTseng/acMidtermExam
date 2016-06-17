@@ -4,6 +4,9 @@ class MessagesController < ApplicationController
 
   def index
     @messages = Message.all
+
+    apply_for_pages
+
   end
 
   def show
@@ -52,6 +55,10 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:title, :content)
+  end
+
+  def apply_for_pages
+    @messages = @messages.page(params[:page]).per(5)
   end
 
 end
