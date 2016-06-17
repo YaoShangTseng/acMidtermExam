@@ -8,6 +8,21 @@
 </head>
 <body>
 
+<h1>Alpha Camp WEB 班災情支援網</h1>
+<hr>
+
+<div>
+  <% if flash[:notice].present? %>
+    <%= flash[:notice] %>
+  <% end %>
+</div>
+<div>
+  <% if flash[:alert].present? %>
+    <%= flash[:alert] %>
+  <% end %>
+</div>
+
+
 <%= yield %>
 
 </body>

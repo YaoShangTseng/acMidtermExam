@@ -1,0 +1,17 @@
+<% if @message.errors.any? %>
+  <ul>
+    <% @message.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div>
+  <%= f.label :title, "標題" %>
+  <%= f.text_field :title %>
+</div>
+
+<div>
+  <%= f.label :content, "內文" %>
+  <%= f.text_area :content %>
+</div>
