@@ -4,10 +4,12 @@
   <tr>
     <td>標題</td>
     <td>作者</td>
+    <td>編輯時間</td>
     <% @messages.each do |message| %>
       <tr>
         <td><%= link_to message.title, message_path(message) %></td>
         <td></td>
+        <td><%= message.updated_at %></td>
         <td><%= link_to "編輯", edit_message_path(message) %></td>
         <td><%= link_to "刪除", message_path(message), :method => :delete, :data => {:confirm => "確定要刪除嗎 ?"} %></td>
         <td></td>
