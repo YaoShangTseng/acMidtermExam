@@ -8,6 +8,7 @@ class MessageCommentsController < ApplicationController
 
   def create
     @comment = @message.comments.new(comment_param)
+    @comment.user = current_user
     if @comment.save
       flash[:notice] = "建立成功"
       redirect_to message_path(@message)
@@ -19,6 +20,10 @@ class MessageCommentsController < ApplicationController
 
   def edit
     @comment = @message.comments.find(params[:id])
+    if @comment.user != current_user
+      flash[:alert] = "你不能編輯別人的評論喔"
+      redirect_to message_path(@message)
+    end
   end
 
   def update
@@ -34,13 +39,16 @@ class MessageCommentsController < ApplicationController
   end
 
   def destroy
+
     @comment = @message.comments.find(params[:id])
-    @comment.destroy
 
-    flash[:alert] = "刪除成功"
-
+    if @comment.user != current_user
+      flash[:alert] = "你不能刪除別人的評論喔"
+    else
+      @comment.destroy
+      flash[:alert] = "刪除成功"
+    end
     redirect_to message_path(@message)
-
   end
 
   protected

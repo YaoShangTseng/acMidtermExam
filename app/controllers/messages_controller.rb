@@ -30,6 +30,10 @@ class MessagesController < ApplicationController
   end
 
   def edit
+    if @message.user != current_user
+      flash[:alert] = "你不能編輯別人的求救文章喔"
+      redirect_to messages_path
+    end
 
   end
 
@@ -43,9 +47,17 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    @message.destroy
-    flash[:alert] = "刪除成功"
-    redirect_to messages_path
+
+    if @message.user != current_user
+      flash[:alert] = "你不能刪除別人的求救文章喔"
+      redirect_to messages_path
+    else
+      @message.destroy
+      flash[:alert] = "刪除成功"
+      redirect_to messages_path
+    end
+
+
   end
 
 

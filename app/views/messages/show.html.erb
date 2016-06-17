@@ -11,10 +11,12 @@
 <table>
   <tr>
     <td>評論</td>
+    <td>作者</td>
   </tr>
   <% @comments.each do |comment| %>
   <tr>
     <td><%= comment.content %></td>
+    <td><%= comment.user.try(:short_name) %></td>
     <td><%= link_to "修改", edit_message_comment_path(@message, comment) %></td>
     <td><%= link_to "刪除", message_comment_path(@message, comment), :method => :delete, :data => {:confirm => "確定要刪除嗎 ?"} %></td>
   </tr>
