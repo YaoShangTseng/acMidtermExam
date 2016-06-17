@@ -1,10 +1,14 @@
 <h2>
   標題 : <%= @message.title %>
 </h2>
+<h3>分類 : <%= @category.name %></h3>
 
 <p>
   內文 : <%= @message.content %>
 </p>
+
+
+
 
 <p><%= link_to "新增評論", new_message_comment_path(@message) %></p>
 

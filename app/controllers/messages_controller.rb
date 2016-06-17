@@ -12,6 +12,7 @@ class MessagesController < ApplicationController
 
   def show
     @comments = @message.comments
+    @category = Category.find(@message.category_id)
   end
 
   def new
@@ -68,7 +69,7 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:title, :content)
+    params.require(:message).permit(:title, :content, :category_id)
   end
 
   def apply_for_pages
