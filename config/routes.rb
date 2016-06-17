@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :messages
+  resources :messages do
+    resources :comments
+  end
 
   root 'messages#index'
 
