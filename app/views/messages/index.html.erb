@@ -1,3 +1,4 @@
+<br>
 <%= link_to "建立新的求救", new_message_path %>
 
 <table>
@@ -8,7 +9,7 @@
     <% @messages.each do |message| %>
       <tr>
         <td><%= link_to message.title, message_path(message) %></td>
-        <td></td>
+        <td><%= message.user.try(:short_name) %></td>
         <td><%= message.updated_at %></td>
         <td><%= link_to "編輯", edit_message_path(message) %></td>
         <td><%= link_to "刪除", message_path(message), :method => :delete, :data => {:confirm => "確定要刪除嗎 ?"} %></td>

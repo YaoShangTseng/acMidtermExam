@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AcMidtermExam</title>
+  <title>Alpha Camp WEB 班災情支援網</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -21,6 +21,16 @@
     <%= flash[:alert] %>
   <% end %>
 </div>
+
+<% if current_user %>
+  歡迎， <%= current_user.short_name %>
+
+  <%= link_to "登出", destroy_user_session_path, :method => :delete %> |
+  <%= link_to "修改資料", edit_registration_path(:user) %>
+<% else %>
+  <%= link_to "註冊", new_registration_path(:user) %> |
+  <%= link_to "登入", new_session_path(:user) %>
+<% end %>
 
 
 <%= yield %>

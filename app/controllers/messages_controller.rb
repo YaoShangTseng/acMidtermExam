@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
 
+  before_action :authenticate_user!, :except => [:index]
   before_action :set_message, :only => [:show, :edit, :update, :destroy]
 
   def index
@@ -19,6 +20,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
+    @message.user = current_user
     if @message.save
       flash[:notice] = "建立成功"
       redirect_to messages_path
