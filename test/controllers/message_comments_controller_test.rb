@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CommentsControllerTest < ActionController::TestCase
+class MessageCommentsControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end
