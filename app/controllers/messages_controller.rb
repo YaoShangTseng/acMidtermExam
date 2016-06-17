@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
   end
 
   def show
-
+    @comments = @message.comments
   end
 
   def new
